@@ -1,0 +1,35 @@
+{
+  "name": "nexus-technical-practical-test",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "npm run build:blocks && shopify app build",
+    "build:blocks": "for dir in extensions/theme-extension/src/*/; do BLOCK=$(basename \"$dir\") vite build --config extensions/theme-extension/vite.block.config.js; done",
+    "dev:blocks": "for dir in extensions/theme-extension/src/*/; do BLOCK=$(basename \"$dir\") vite build --watch --config extensions/theme-extension/vite.block.config.js & done; wait",
+    "dev": "shopify app dev",
+    "info": "shopify app info",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.25",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.6"
+  },
+  "trustedDependencies": [
+    "@shopify/plugin-cloudflare"
+  ],
+  "author": "apple",
+  "private": true,
+  "workspaces": [
+    "extensions/*"
+  ]
+}

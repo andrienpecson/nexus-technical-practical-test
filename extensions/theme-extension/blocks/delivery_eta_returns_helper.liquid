@@ -1,0 +1,29 @@
+<div
+  id="delivery-eta-returns-helper"
+  data-product-id="{{ product.id }}"
+  data-regions-url="{{ 'regions.json' | asset_url }}"
+  data-lead-time="{{ block.settings.lead_time }}"
+  data-availability="{{ product.available }}"
+  data-tags="{{ product.tags | join: ',' }}"
+  data-variants='{{ product.variants | json }}'
+  data-selected-variant-id="{{ product.selected_or_first_available_variant.id }}"
+></div>
+
+<script src="{{ 'delivery_eta_returns_helper.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Delivery & Returns Helper",
+  "target": "section",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "number",
+      "id": "lead_time",
+      "label": "Lead Time - Days",
+      "default": 0,
+      "info": "Additional lead time in days to add to the delivery estimate"
+    }
+  ]
+}
+{% endschema %}
